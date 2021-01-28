@@ -1,0 +1,103 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Assignment_3.Models.Class
+    <head>
+
+    <!--Adding Javascript to validate the input-->
+        <script type="text/javascript">
+
+     // Form validation
+      function validate() {
+
+         if( document.myForm.Category.value == "" ) {
+            alert( "Please provide a Category" );
+            document.myForm.Category.focus() ;
+            return false;
+         }
+         if( document.myForm.Title.value == "" ) {
+            alert( "Please provide a Title" );
+            document.myForm.Title.focus() ;
+            return false;
+         }
+         if( document.myForm.Year.value == "" ) {
+             alert("Please provide a Year");
+             document.myForm.Year.focus();
+            return false;
+          }
+          if (document.myForm.Director.value == "") {
+              alert("Please provide a Director Name");
+              document.myForm.Director.focus();
+              return false;
+          }
+          if (document.myForm.Rating.value == "") {
+              alert("Please select a movie rating");
+              document.myForm.Rating.focus();
+              return false;
+          }
+         return( true );
+      }
+        </script>
+    </head>
+
+<!--Setting up a form to collect user input-->
+
+<body>
+    <form asp-action="Movies" method="post" name="myForm">
+        <div>
+            <label>Category: </label>
+            <input asp-for="Category" />
+        </div>
+
+        <div>
+            <label>Title: </label>
+            <input asp-for="Title" />
+        </div>
+
+        <div>
+            <label>Year: </label>
+            <input asp-for="Year" />
+        </div>
+
+        <div>
+            <label>Director: </label>
+            <input asp-for="Director" />
+        </div>
+
+        <div>
+            <label>Rating: </label>
+            <select asp-for="Rating">
+                <option></option>
+                <option>G</option>
+                <option>PG</option>
+                <option>PG-13</option>
+                <option>R</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Edited: </label>
+            <select asp-for="Edited">
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Lent: </label>
+            <input asp-for="Lent" />
+        </div>
+
+        <div>
+            <label>Notes: </label>
+            <input asp-for="Notes" />
+        </div>
+
+        <div>
+            <button type="submit" onclick="validate()" >Submit</button>
+        </div>
+    </form>
+</body>
+

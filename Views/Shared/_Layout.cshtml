@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+</head>
+<body>
+    <h1>@ViewBag.Heading</h1>
+
+    @RenderBody()
+
+    <br />
+    <ul>
+        <li><a asp-controller="Home" asp-action="Index">Home Page</a></li>
+        <li><a asp-controller="Home" asp-action="Podcast">Podcast Page</a></li>
+        <li><a asp-controller="Home" asp-action="Movies">Enter Movies</a></li>
+        <li><a asp-controller="Home" asp-action="MoviesEntered">Movies Entered</a></li>
+
+    </ul>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "List of Movies";
+    ViewBag.Heading = "This is what you entered";
+}
+
+@model IEnumerable<Assignment_3.Models.Class>
+
+<div>
+<!--Lisitng out the movie headers-->
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Director</th>
+                <th>Rating</th>
+                <th>Edited</th>
+                <th>Lent</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Pulling entered input from the model-->
+            @foreach (Assignment_3.Models.Class x in Model)
+            {
+            <tr>
+                <td>@x.Category</td>
+                <td>@x.Title</td>
+                <td>@x.Year</td>
+                <td>@x.Director</td>
+                <td>@x.Rating</td>
+                <td>@x.Edited</td>
+                <td>@x.Lent</td>
+                <td>@x.Notes</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
