@@ -4,19 +4,20 @@
 <head>
     <title>@ViewBag.Title</title>
     <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
-<body>
+<body class="bg-light">
     <h1>@ViewBag.Heading</h1>
 
     @RenderBody()
 
     <br />
-    <ul>
-        <li><a asp-controller="Home" asp-action="Index">Home Page</a></li>
-        <li><a asp-controller="Home" asp-action="Podcast">Podcast Page</a></li>
-        <li><a asp-controller="Home" asp-action="Movies">Enter Movies</a></li>
-        <li><a asp-controller="Home" asp-action="MoviesEntered">Movies Entered</a></li>
-
-    </ul>
+    <div class="text-center">
+        <a asp-controller="Home" asp-action="Index"  class="btn btn-dark">Home Page</a>
+        <a asp-controller="Home" asp-action="Podcast" class="btn btn-dark">Podcast Page</a>
+        <a asp-controller="Home" asp-action="Movies" class="btn btn-dark">Enter Movies</a>
+        <a asp-controller="Home" asp-action="MoviesEntered" class="btn btn-dark">Movies Entered</a>
+    </div>
 </body>
 </html>

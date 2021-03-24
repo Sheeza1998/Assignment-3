@@ -8,12 +8,14 @@ namespace Assignment_3.Models
 {
     public class Class
     {
+        [Key]
+
+        public int MovieId { get; set; }
         public string Category { get; set; }
         public string Title { get; set; }
         public string Year { get; set; }
         public string Director { get; set; }
         public string Rating { get; set; }
-        //Adding a true/False option
         public bool Edited { get; set; }
         public string Lent { get; set; }
 

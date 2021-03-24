@@ -12,11 +12,11 @@ namespace Assignment_3.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private MovieListContext Context { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(MovieListContext movielist)
         {
-            _logger = logger;
+            Context = movielist;
         }
 
         //Controls the homepage
@@ -39,26 +39,60 @@ namespace Assignment_3.Controllers
         }
 
         [HttpPost]
-
-        //Excluing the movie Independence Day
         public IActionResult Movies(Class apps)
         {
-            if (apps.Title != "Independence Day") {
-                TempStorage.AddApplication(apps);
-            }
-            return RedirectToAction("MoviesEntered");
+            Context.Classes.Add(apps);
+
+            Context.SaveChanges();
+            return View("Confirmed", apps);
         }
 
         //Controls the movies entered page
         public IActionResult MoviesEntered()
         {
-            return View(TempStorage.Applications);
+            return View(Context.Classes);
         }
 
-        private IActionResult View(Action<Class> addApplication)
+        public IActionResult Confirmed()
         {
-            throw new NotImplementedException();
+            return View();
         }
+
+        public IActionResult Edit(int movieId)
+        {
+            Class movie = Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault();
+
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Class movie, int movieId)
+        {
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Category = movie.Category;
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Title = movie.Title;
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Director = movie.Director;
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Edited = movie.Edited;
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Year = movie.Year;
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Rating = movie.Rating;
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Lent = movie.Lent;
+            Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault().Notes = movie.Notes;
+
+            Context.SaveChanges();
+            return RedirectToAction("MoviesEntered");
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int movieID)
+        {
+            Class movie = Context.Classes.Where(e => e.MovieId == movieID).FirstOrDefault();
+            Context.Classes.Remove(movie);
+            Context.SaveChanges();
+            return RedirectToAction("MoviesEntered");
+        }
+        //private IActionResult View(Action<Class> addApplication) { 
+        //    throw new NotImplementedException();
+        //}
+   
 
         public IActionResult Privacy()
         {
