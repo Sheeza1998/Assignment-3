@@ -53,11 +53,13 @@ namespace Assignment_3.Controllers
             return View(Context.Classes);
         }
 
+        //Takes to confirmation page
         public IActionResult Confirmed()
         {
             return View();
         }
 
+        //Edits the record
         public IActionResult Edit(int movieId)
         {
             Class movie = Context.Classes.Where(e => e.MovieId == movieId).FirstOrDefault();
@@ -80,6 +82,8 @@ namespace Assignment_3.Controllers
             Context.SaveChanges();
             return RedirectToAction("MoviesEntered");
         }
+
+        //Deletes the record
 
         [HttpPost]
         public IActionResult Delete(int movieID)
